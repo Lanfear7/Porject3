@@ -126,7 +126,9 @@ select,
 option {
 	font-family: 'roboto', sans-serif;
 }
-
+.other-title{
+	display: none;
+}
 /* ================================= 
   Page Styles
 ==================================== */
