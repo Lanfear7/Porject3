@@ -21,15 +21,57 @@ const roleSelection = () => {
     
 //T-shirt info
 const shirtInfo = () => {
-    const design = document.getElementById('design');
-    const color = document.querySelector('option[value="cornflowerblue"]');
-    window.onload = (e) => {
-        color.hidden = true
-    }
-};
+    const designs = document.getElementById('design');
+    //this will select the color 'list' and add a new option to it  
+    var colors = document.getElementById('color');
+    var option = document.createElement("option");
+    option.text = "Please select a T-shirt theme";
+    colors.add(option, colors.options[0]);
+    //this will select the option element with the index of 0
+    color.selectedIndex = 0;
 
+    //display certain colors
+    designs.addEventListener('change', (e) =>{
+        console.log(e.target.value)
+        //this will make sure if you click option1 then option2 them want to go back to option1 the colors will still display in the form 
+        for(let i = 0; i < colors.length; i++){
+            colors[i].style.display = 'flex'
+        }
+        //figure out what option the user clicked
+        if(e.target.value === 'js puns'){
+            console.log('1')
+            //loop over the color list as add a display of none to options that have a index of 4 or more 
+            for(let i = 0; i < colors.length; i++){
+                //set the display
+                console.log(i)
+                if (i > 3){
+                    let hiddenColor = colors[i]
+                    console.log(hiddenColor)
+                    hiddenColor.style.display = 'none'
+                    colors.options[0].style.display = 'none'
+                } 
+            }
+        } else if (e.target.value === 'heart js') {
+            console.log('2')
+            
+            //this is a copy from the top just the if is a little different 
+              for(let i = 0; i < colors.length; i++){
+                //set the display
+                console.log(i)
+                if (i < 4){
+                    let hiddenColor = colors[i]
+                    console.log(hiddenColor)
+                    hiddenColor.style.display = 'none'
+                    colors.options[0].style.display = 'none'
+                } 
+              }
 
-
+        } else {
+            console.log('other')
+        }
+    })//event
+    
+};//function
 
 //register of activities 
 
@@ -38,4 +80,5 @@ const shirtInfo = () => {
 //payment info 
 
 setFocus();
+roleSelection();
 shirtInfo();
