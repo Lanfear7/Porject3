@@ -51,7 +51,7 @@ const shirtInfo = () => {
                     option.style.display = 'none'
                 } 
             }
-        } else if (e.target.value === 'heart js') {
+        } else if (e.target.value === 'heart js') { 
             console.log('2')
             
             //this is a copy from the top just the if is a little different 
@@ -75,11 +75,21 @@ const shirtInfo = () => {
 
 //register of activities 
 const register = () =>{
-    let activities = document.getElementsByClassName('activities');
-    console.log(activities);
-    activities.addEventListener('change', (e) =>{
-        
-    });
+    //this will select all the input field within the element that has a class of activities
+    let courses = document.querySelectorAll('.activities input');
+    console.log(courses);
+    for (let i = 0; i < courses.length; i++){
+       courses[i].addEventListener('click', (e) =>{
+           console.log(e.target);
+           if (e.target.name === 'js-frameworks'){
+               let blank = courses[3];
+               console.log(blank);
+               blank.style.display = 'none';
+           }
+         
+       });
+       
+    }
 }
 
 
