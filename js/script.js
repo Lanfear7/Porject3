@@ -33,7 +33,7 @@ const shirtInfo = () => {
     //display certain colors
     designs.addEventListener('change', (e) =>{
         console.log(e.target.value)
-        //this will make sure if you click option1 then option2 them want to go back to option1 the colors will still display in the form 
+        //this will make sure if you click option1 then option2 then want to go back to option1 the colors will still display in the form 
         for(let i = 0; i < colors.length; i++){
             colors[i].style.display = 'flex'
         }
@@ -48,7 +48,7 @@ const shirtInfo = () => {
                     let hiddenColor = colors[i]
                     console.log(hiddenColor)
                     hiddenColor.style.display = 'none'
-                    colors.options[0].style.display = 'none'
+                    option.style.display = 'none'
                 } 
             }
         } else if (e.target.value === 'heart js') {
@@ -62,19 +62,25 @@ const shirtInfo = () => {
                     let hiddenColor = colors[i]
                     console.log(hiddenColor)
                     hiddenColor.style.display = 'none'
-                    colors.options[0].style.display = 'none'
+                    option.style.display = 'none'
                 } 
               }
 
         } else {
             console.log('other')
         }
-    })//event
+    })
     
-};//function
+};
 
 //register of activities 
-
+const register = () =>{
+    let activities = document.getElementsByClassName('activities');
+    console.log(activities);
+    activities.addEventListener('change', (e) =>{
+        
+    });
+}
 
 
 //payment info 
@@ -82,3 +88,4 @@ const shirtInfo = () => {
 setFocus();
 roleSelection();
 shirtInfo();
+register();
