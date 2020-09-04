@@ -75,27 +75,120 @@ const shirtInfo = () => {
 
 //register of activities 
 const register = () =>{
-    //this will select all the input field within the element that has a class of activities
-    let courses = document.querySelectorAll('.activities input');
-    console.log(courses);
-    for (let i = 0; i < courses.length; i++){
-       courses[i].addEventListener('click', (e) =>{
-           console.log(e.target);
-           if (e.target.name === 'js-frameworks'){
-               let blank = courses[3];
-               console.log(blank);
-               blank.style.display = 'none';
-           }
-         
-       });
-       
-    }
+
+    //this will store all the inputs into a list 
+    const checkboxes = document.querySelectorAll('.activities input');
+
+    //adding the change event listener
+    document.querySelector('.activities').addEventListener('change', (e) => {
+
+        //getting the event target(clicked box) and the the event targets attribute 
+        const clicked = e.target;
+        console.log(clicked)
+        const clickedAtt = e.target.getAttribute('data-day-and-time');
+        console.log(clickedAtt)
+
+        //looping over the the length of the list 
+        for (let i = 0; i < checkboxes.length; i ++) {
+
+            //getting the checkboxes attributes
+            let checkboxAtt = checkboxes[i].getAttribute('data-day-and-time');
+            console.log(checkboxes[i])
+
+            //if the clicked box = a checkbox attribute & the clicked box is NOT = to the current iteration of the looped checkbox -- return true 
+            if (clickedAtt === checkboxAtt && clicked !== checkboxes[i]) {
+
+                //if the clicked checkbox is checked apply this \/
+                if (clicked.checked) {
+
+                    //the checkbox at the currrent iteration is disabled and the color is changed to red 
+                    checkboxes[i].disabled = true;
+                    checkboxes[i].parentNode.style.color = 'red'
+
+                //else apply this \/
+                } else {
+
+                    //the check box at the current iteration is not disables and the text is black 
+                    checkboxes[i].disabled = false;
+                    checkboxes[i].parentNode.style.color = 'black'
+                }
+            }
+        }
+    });
 }
 
 
 //payment info 
+const payment = () => {
+    //get the payment option select and all the divs well will need 
+    let section = document.getElementById('payment-section');
+    let payment = document.getElementById('payment');
+    let creditCard = document.getElementById('credit-card');
+    let paypal = document.getElementById('paypal');
+    let bitcoin = document.getElementById('bitcoin');
+    //loop over the options
+    for (let i = 0; i < payment.length; i++){
+        console.log(payment[i]);
+        //set option at index 1 to 'focus'
+        payment.selectedIndex = 1;
+        paypal.style.display = 'none'
+        bitcoin.style.display = 'none'
+    }
+    payment.addEventListener('change', (e)=>{
+        console.log(e.target.value);
+        //if option 1 display credit card
+        if (e.target.value === 'credit card'){
+            creditCard.style.display = 'block'
+            bitcoin.style.display = 'none'
+            paypal.style.display = 'none'
+        //else if option 2 display paypal
+        }else if(e.target.value === 'paypal'){
+            paypal.style.display = 'flex'
+            creditCard.style.display = 'none'
+            bitcoin.style.display = 'none'
+        //else if option 3 display bitcoin
+        }else if(e.target.value === 'bitcoin'){
+            bitcoin.style.display = 'flex'
+            creditCard.style.display = 'none'
+            paypal.style.display = 'none'
+        //if no payment method is chosen display this message
+        }else{
+            let newDiv = document.createElement('div');
+            let text = document.createElement('p');
+            text.textContent = 'Please select a payment method before proceeding'
+            newDiv.appendChild(text);
+            paypal.style.display = 'none'
+            bitcoin.style.display = 'none'
+            creditCard.style.display = 'none'
+            console.log(newDiv);
+            section.appendChild(newDiv);
+        }
+    })
+}
 
+const validation = () =>{
+    let name = document.getElementById('name');
+    let email = document.getElementById('mail');
+    let emailRegex = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
+    let emailLower = email.value.toLowerCase();
+    console.log(emailLower);
+    if (email.value  === ''){
+        email.previousElementSibling.style.color = 'red';
+        email.style.backgroundColor = '#ff00009f';
+    }else {
+        email.previousElementSibling.style.color = 'black';
+    }
+    if (name.value === ''){
+        name.previousElementSibling.style.color = 'red';
+        name.style.backgroundColor = '#ff00009f';
+    }else {
+        name.previousElementSibling.style.color = 'black';
+    }
+}
+//calling functions 
 setFocus();
 roleSelection();
 shirtInfo();
 register();
+payment();
+validation();
