@@ -152,38 +152,78 @@ const payment = () => {
             creditCard.style.display = 'none'
             paypal.style.display = 'none'
         //if no payment method is chosen display this message
-        }else{
+        }else if (e.target.value = 'select method'){
             let newDiv = document.createElement('div');
             let text = document.createElement('p');
             text.textContent = 'Please select a payment method before proceeding'
+            //add a class
+            newDiv.className = 'noPayment';
             newDiv.appendChild(text);
+            //se the display of the other options 
             paypal.style.display = 'none'
             bitcoin.style.display = 'none'
             creditCard.style.display = 'none'
+            newDiv.style.display = 'flex'
             console.log(newDiv);
+            //add the div to the DOM
             section.appendChild(newDiv);
+        }else {
+            console.log('well idk what you did')
         }
     })
 }
 
 const validation = () =>{
-    let name = document.getElementById('name');
+
+    //email validation
     let email = document.getElementById('mail');
     let emailRegex = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
     let emailLower = email.value.toLowerCase();
     console.log(emailLower);
-    if (email.value  === ''){
+    if (email.value  === '' || emailLower != emailRegex){
         email.previousElementSibling.style.color = 'red';
         email.style.backgroundColor = '#ff00009f';
     }else {
         email.previousElementSibling.style.color = 'black';
     }
+
+    //name validation 
+    let name = document.getElementById('name');
     if (name.value === ''){
         name.previousElementSibling.style.color = 'red';
         name.style.backgroundColor = '#ff00009f';
     }else {
         name.previousElementSibling.style.color = 'black';
     }
+
+    //regi validation 
+    let checkboxes = document.querySelectorAll('.activities input');
+
+    //loop over checkboxes to see if any are clicked 
+    for (let i = 0; i < checkboxes.length; i++){
+        let isChecked = checkboxes[i];
+
+        //if any are check run this \/
+        if (isChecked.checked){
+
+            //loop over the list and apply black to the text color 
+            for(let i = 0; i <= 7; i++){
+                checkboxes[i].parentNode.style.color = 'black'
+            }
+        } else {
+            isChecked.parentNode.style.color = 'red';
+        }
+    }
+
+    //payment validation
+    let noPayment = document.getElementsByClassName('noPayment');
+
+    if (noPayment){
+        //will set the 'Payment Info' to red
+        let paymentInfo = document.querySelector('#payment-section legend');
+        paymentInfo.style.color = 'red';
+    } 
+
 }
 //calling functions 
 setFocus();
