@@ -32,32 +32,26 @@ const shirtInfo = () => {
 
     //display certain colors
     designs.addEventListener('change', (e) =>{
-        console.log(e.target.value)
         //this will make sure if you click option1 then option2 then want to go back to option1 the colors will still display in the form 
         for(let i = 0; i < colors.length; i++){
             colors[i].style.display = 'flex'
         }
         //figure out what option the user clicked
         if(e.target.value === 'js puns'){
-            console.log('1')
             //loop over the color list as add a display of none to options that have a index of 4 or more 
             for(let i = 0; i < colors.length; i++){
                 //set the display
-                console.log(i)
                 if (i > 3){
                     let hiddenColor = colors[i]
-                    console.log(hiddenColor)
                     hiddenColor.style.display = 'none'
                     option.style.display = 'none'
                 } 
             }
         } else if (e.target.value === 'heart js') { 
-            console.log('2')
             
             //this is a copy from the top just the if is a little different 
               for(let i = 0; i < colors.length; i++){
                 //set the display
-                console.log(i)
                 if (i < 4){
                     let hiddenColor = colors[i]
                     console.log(hiddenColor)
@@ -67,7 +61,6 @@ const shirtInfo = () => {
               }
 
         } else {
-            console.log('other')
         }
     })
     
@@ -84,16 +77,13 @@ const register = () =>{
 
         //getting the event target(clicked box) and the the event targets attribute 
         const clicked = e.target;
-        console.log(clicked)
         const clickedAtt = e.target.getAttribute('data-day-and-time');
-        console.log(clickedAtt)
 
         //looping over the the length of the list 
         for (let i = 0; i < checkboxes.length; i ++) {
 
             //getting the checkboxes attributes
             let checkboxAtt = checkboxes[i].getAttribute('data-day-and-time');
-            console.log(checkboxes[i])
 
             //if the clicked box = a checkbox attribute & the clicked box is NOT = to the current iteration of the looped checkbox -- return true 
             if (clickedAtt === checkboxAtt && clicked !== checkboxes[i]) {
@@ -128,7 +118,6 @@ const payment = () => {
     let bitcoin = document.getElementById('bitcoin');
     //loop over the options
     for (let i = 0; i < payment.length; i++){
-        console.log(payment[i]);
         //set option at index 1 to 'focus'
         payment.selectedIndex = 1;
         paypal.style.display = 'none'
@@ -136,7 +125,6 @@ const payment = () => {
         select.style.display = 'none'
     }
     payment.addEventListener('change', (e)=>{
-        console.log(e.target.value);
         //if option 1 display credit card
         if (e.target.value === 'credit card'){
             creditCard.style.display = 'block'
@@ -155,81 +143,78 @@ const payment = () => {
         }
     })
 }
-let submit = document.querySelector('button')
-submit.setAttribute('type', 'button');
-submit.addEventListener('click', (e) =>{
+
+//get the register button
+const regButton = document.querySelector('button');
+regButton.setAttribute('type', 'button');
+//add an event listener
+regButton.addEventListener('click', (e) => {
     e.preventDefault;
-     //email validation
-    let email = document.getElementById('mail');
-    let emailRegex = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
-    let emailLower = email.value.toLowerCase();
-    console.log(emailLower);
-    if (email.value  === '' || emailLower != emailRegex){
-        email.previousElementSibling.style.color = 'red';
-        email.style.backgroundColor = '#ff00009f';
+
+    //check if name has a value
+    const name = document.querySelector('#name')
+    const basicInfo = document.querySelector('fieldset legend')
+    if(name.value){
+        basicInfo.style.color = 'black';
+        console.log('we have a name');
     } else {
-        email.previousElementSibling.style.color = 'black';
+        basicInfo.style.color = 'red';
+        console.log('no name');
+        
     }
 
-    //name validation 
-    let name = document.getElementById('name');
-    if (name.value === ''){
-        name.previousElementSibling.style.color = 'red';
-        name.style.backgroundColor = '#ff00009f';
-    } else {
-        name.previousElementSibling.style.color = 'black';
-    }
-
-    //regi validation 
-    let checkboxes = document.querySelectorAll('.activities input');
-
-    //loop over checkboxes to see if any are clicked 
-    for (let i = 0; i < checkboxes.length; i++){
-        let isChecked = checkboxes[i];
-
-        //if any are check run this \/
-        if (isChecked.checked){
-
-            //loop over the list and apply black to the text color 
-            for(let i = 0; i <= 7; i++){
-                checkboxes[i].parentNode.style.color = 'black'
-            }
+    //check if email has a value 
+    const email = document.querySelector('#mail')
+    console.log(email.value);
+    if(email.value){
+        console.log('email has a value');
+        //if it has a value check if the value passes the regex
+        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        //this will test if the emails value will pass the regex
+        if(regex.test(String(email.value).toLowerCase())){
+            console.log('email passes regex')
+            basicInfo.style.color = 'black';
         } else {
-            isChecked.parentNode.style.color = 'red';
+            //if email has a value but wont pass the regex 
+            basicInfo.style.color = 'red';
+            console.log('email didnt pass regex')
         }
+    }else{
+        //if email has no value
+        console.log('email has no value ');
+        basicInfo.style.color = 'red';
     }
 
-    //payment validation
-    let cardNumber = document.getElementById('cc-num');
-    let zipCode = document.getElementById('zip');
-    let cvv = document.getElementById('cvv');
-
-    if (cardNumber.value === '' && cardNumber.length != 16){
-        console.log('no card number');
-        cardNumber.previousElementSibling.style.color = 'red'
-    } else if(cardNumber.length = 16 ){
-        cardNumber.previousElementSibling.style.color = 'black'
-    }
-
-    if (zipCode.value === '' && zipCode.length != 6){
-        console.log('no vip');
-        zipCode.previousElementSibling.style.color = 'red'
-    } else if(zipCode.length = 6 ){
-        zipCode.previousElementSibling.style.color = 'black'
-    }
-
-    if (cvv.value === '' && cvv.length != 3){
-        console.log('no cvv');
-        cvv.previousElementSibling.style.color = 'red'
-    } else if(cvv.length = 3 ){
-        cvv.previousElementSibling.style.color = 'black'
+    //check any of the check boxes are click 
+    //get a list of the check boxes 
+    const activity = document.querySelectorAll('.activities input');
+    const activityLabel = document.querySelector('.activities legend');
+    console.log(activity[0]);
+    //loop over the boxes to is if any are checked
+    for (let i = 0; i < activity.length; i++){
+        console.log(activity[i]);
+        //if one or more are checked run \/
+        if(activity[i].checked){
+            console.log('something was picked');
+            console.log('color is black');
+            activityLabel.style.color = 'black'
+           
+        }else{
+            //else \/
+            console.log('nothing was picked');
+            console.log('color is red ');
+            activityLabel.style.color = 'red'
+        }
+        
+        
     }
     
     
 })
 
-//calling functions 
-//email validation wont work***************************
+
+
+//calling functions \
 setFocus();
 roleSelection();
 shirtInfo();
