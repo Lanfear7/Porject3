@@ -155,10 +155,11 @@ const payment = () => {
         }
     })
 }
-
-const validation = () =>{
-
-    //email validation
+let submit = document.querySelector('button')
+submit.setAttribute('type', 'button');
+submit.addEventListener('click', (e) =>{
+    e.preventDefault;
+     //email validation
     let email = document.getElementById('mail');
     let emailRegex = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
     let emailLower = email.value.toLowerCase();
@@ -223,9 +224,10 @@ const validation = () =>{
     } else if(cvv.length = 3 ){
         cvv.previousElementSibling.style.color = 'black'
     }
+    
+    
+})
 
-
-}
 //calling functions 
 //email validation wont work***************************
 setFocus();
@@ -233,4 +235,3 @@ roleSelection();
 shirtInfo();
 register();
 payment();
-validation();
