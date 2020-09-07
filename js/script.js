@@ -120,9 +120,9 @@ const register = () =>{
 
 //payment info 
 const payment = () => {
-    //get the payment option select and all the divs well will need 
-    let section = document.getElementById('payment-section');
+    //get the payment option select and all the divs well will need ;
     let payment = document.getElementById('payment');
+    let select = document.querySelector('option[value="select method"]')
     let creditCard = document.getElementById('credit-card');
     let paypal = document.getElementById('paypal');
     let bitcoin = document.getElementById('bitcoin');
@@ -133,6 +133,7 @@ const payment = () => {
         payment.selectedIndex = 1;
         paypal.style.display = 'none'
         bitcoin.style.display = 'none'
+        select.style.display = 'none'
     }
     payment.addEventListener('change', (e)=>{
         console.log(e.target.value);
@@ -142,33 +143,15 @@ const payment = () => {
             bitcoin.style.display = 'none'
             paypal.style.display = 'none'
         //else if option 2 display paypal
-        }else if(e.target.value === 'paypal'){
+        } else if(e.target.value === 'paypal'){
             paypal.style.display = 'flex'
             creditCard.style.display = 'none'
             bitcoin.style.display = 'none'
         //else if option 3 display bitcoin
-        }else if(e.target.value === 'bitcoin'){
+        } else if(e.target.value === 'bitcoin'){
             bitcoin.style.display = 'flex'
             creditCard.style.display = 'none'
             paypal.style.display = 'none'
-        //if no payment method is chosen display this message
-        }else if (e.target.value = 'select method'){
-            let newDiv = document.createElement('div');
-            let text = document.createElement('p');
-            text.textContent = 'Please select a payment method before proceeding'
-            //add a class
-            newDiv.className = 'noPayment';
-            newDiv.appendChild(text);
-            //se the display of the other options 
-            paypal.style.display = 'none'
-            bitcoin.style.display = 'none'
-            creditCard.style.display = 'none'
-            newDiv.style.display = 'flex'
-            console.log(newDiv);
-            //add the div to the DOM
-            section.appendChild(newDiv);
-        }else {
-            console.log('well idk what you did')
         }
     })
 }
@@ -183,7 +166,7 @@ const validation = () =>{
     if (email.value  === '' || emailLower != emailRegex){
         email.previousElementSibling.style.color = 'red';
         email.style.backgroundColor = '#ff00009f';
-    }else {
+    } else {
         email.previousElementSibling.style.color = 'black';
     }
 
@@ -192,7 +175,7 @@ const validation = () =>{
     if (name.value === ''){
         name.previousElementSibling.style.color = 'red';
         name.style.backgroundColor = '#ff00009f';
-    }else {
+    } else {
         name.previousElementSibling.style.color = 'black';
     }
 
@@ -216,16 +199,35 @@ const validation = () =>{
     }
 
     //payment validation
-    let noPayment = document.getElementsByClassName('noPayment');
+    let cardNumber = document.getElementById('cc-num');
+    let zipCode = document.getElementById('zip');
+    let cvv = document.getElementById('cvv');
 
-    if (noPayment){
-        //will set the 'Payment Info' to red
-        let paymentInfo = document.querySelector('#payment-section legend');
-        paymentInfo.style.color = 'red';
-    } 
+    if (cardNumber.value === '' && cardNumber.length != 16){
+        console.log('no card number');
+        cardNumber.previousElementSibling.style.color = 'red'
+    } else if(cardNumber.length = 16 ){
+        cardNumber.previousElementSibling.style.color = 'black'
+    }
+
+    if (zipCode.value === '' && zipCode.length != 6){
+        console.log('no vip');
+        zipCode.previousElementSibling.style.color = 'red'
+    } else if(zipCode.length = 6 ){
+        zipCode.previousElementSibling.style.color = 'black'
+    }
+
+    if (cvv.value === '' && cvv.length != 3){
+        console.log('no cvv');
+        cvv.previousElementSibling.style.color = 'red'
+    } else if(cvv.length = 3 ){
+        cvv.previousElementSibling.style.color = 'black'
+    }
+
 
 }
 //calling functions 
+//email validation wont work***************************
 setFocus();
 roleSelection();
 shirtInfo();
