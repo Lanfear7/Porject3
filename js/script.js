@@ -71,6 +71,11 @@ const register = () =>{
 
     //this will store all the inputs into a list 
     const checkboxes = document.querySelectorAll('.activities input');
+    let total = 0;
+    let costBox = document.createElement('h3');
+    const activityMain = document.querySelector('.activities');
+    costBox.innerHTML = `Total: 0`;
+    activityMain.appendChild(costBox);
 
     //adding the change event listener
     document.querySelector('.activities').addEventListener('change', (e) => {
@@ -78,6 +83,7 @@ const register = () =>{
         //getting the event target(clicked box) and the the event targets attribute 
         const clicked = e.target;
         const clickedAtt = e.target.getAttribute('data-day-and-time');
+        const clickedPrice = e.target.getAttribute('data-cost');
 
         //looping over the the length of the list 
         for (let i = 0; i < checkboxes.length; i ++) {
@@ -104,7 +110,18 @@ const register = () =>{
                 }
             }
         }
-    });
+        //calculate the price
+        if(clicked.checked){
+            //parseInt will turns the text into a int 
+            total = total + parseInt(clickedPrice);
+        }else{
+            total = total - parseInt(clickedPrice);
+        }
+        //update the innerHTML every time a new class is added or taken away 
+         costBox.innerHTML = `<p> Total: ${total}</p>`
+        
+
+    })
 }
 
 
@@ -199,19 +216,18 @@ regButton.addEventListener('click', (e) => {
             console.log('color is black');
             activityLabel.style.color = 'black'
            
+        }else if (activity[0].checked){
+            console.log('main course was picked');
+            activityLabel.style.color = 'black'
         }else{
             //else \/
             console.log('nothing was picked');
             console.log('color is red ');
             activityLabel.style.color = 'red'
         }
+        
     }
     
-
-
-
-
-
 
     //payment validation 
     const ccNum = document.querySelector('#cc-num');

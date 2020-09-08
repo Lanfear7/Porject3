@@ -16,7 +16,7 @@ button {
 
 body {
   font: 1em/1.5;
-  color: rgba(6, 49, 68, 0.9);
+  color: rgb(111, 157, 220);
 	background: #CDE0FB;
 }
 
@@ -40,7 +40,7 @@ a {
 
 form {
 	padding: .875em 1.875em 1.875em;
-	background: #9BBEEF;
+	background: #ffffff;
 	border: 2px solid rgba(8, 63, 87, 0.6);
 	border-radius: 3px;
 }
@@ -75,7 +75,7 @@ legend {
 }
 
 label {
-	color: #000;
+	color: rgb(1, 153, 255);
 	display: block;
 	margin-bottom: .5em;
 }
@@ -107,9 +107,9 @@ input[type="radio"] {
 }
 
 button {
-	color: #fff;
+	color: rgb(132, 183, 255);
 	padding: .55em 1.25em;
-	background: #083f57;
+	background: #ff0000;
 	margin: 1.25em 0 .5em;
 	cursor: pointer;
 	border: 2px solid black;
@@ -118,7 +118,9 @@ button {
 }
 
 button:hover {
-	background: #6F9DDC;
+	background: rgb(111, 157, 220);
+	color: #ff0000;
+	
 }
 
 input, 
@@ -146,7 +148,7 @@ option {
 .shirt-box {
 	width: 100%;
 	padding: 5px;
-	background: rgba(255, 255, 255, 0.1);
+	background: rgba(5, 74, 131, 0.1);
 	border-radius: 4px;
 }
 
