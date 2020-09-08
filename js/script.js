@@ -208,14 +208,21 @@ regButton.addEventListener('click', (e) => {
     }
     
 
+
+
+
+
+
     //payment validation 
     const ccNum = document.querySelector('#cc-num');
     const zipNum = document.querySelector('#zip');
     const cvvNum = document.querySelector('#cvv');
     let payment = document.querySelector('#payment');
+    const paymentInfo = document.querySelector('#payment-section legend')
+    console.log(paymentInfo);
     //card regex
     let cardRegex = /^\d{13,16}$/; 
-    let zipRegex = /^\d{5}$/;
+    let zipRegex = /^\d{6}$/;
     let cvvRegex = /^\d{3}$/;
 
     //if the user picks credit card
@@ -224,20 +231,34 @@ regButton.addEventListener('click', (e) => {
         //test the card number
         if(cardRegex.test(ccNum.value)){
             console.log('card passed')
+            paymentInfo.style.color = 'black'
         }else {
             console.log('need a valid card')
+            paymentInfo.style.color = 'red'
         }
         //test the zip
         if(zipRegex.test(zipNum.value)){
             console.log('card passed')
+            paymentInfo.style.color = 'black'
         }else {
             console.log('need a valid zip')
+            paymentInfo.style.color = 'red'
         }
         //test the cvv
         if(cvvRegex.test(cvvNum.value)){
             console.log('card passed')
+            paymentInfo.style.color = 'black'
         }else {
             console.log('need a valid cvv')
+            paymentInfo.style.color = 'red'
+        }
+        //this will act as a extra check to make sure everything is correct
+        if (payment.value === 'credit card' && cardRegex.test(ccNum.value) && zipRegex.test(zipNum.value) &&cvvRegex.test(cvvNum.value)){
+            console.log('EVERYTHING IS GOOD')
+            paymentInfo.style.color = 'black'
+        }else{
+            console.log('missing something')
+            paymentInfo.style.color = 'red'
         }
     }
 })
