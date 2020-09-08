@@ -9,7 +9,6 @@ const roleSelection = () => {
     const jobRole = document.getElementById('title');
     jobRole.addEventListener('change', (e) => {
         let jobInput = document.getElementById('other-title');
-        console.log(e.target.value);
         if(e.target.value === 'other'){
             jobInput.style.display = 'inline'
             jobInput.focus();
@@ -57,7 +56,6 @@ const shirtInfo = () => {
                 //set the display
                 if (i < 4){
                     let hiddenColor = colors[i]
-                    console.log(hiddenColor)
                     hiddenColor.style.display = 'none'
                     option.style.display = 'none'
                 } 
@@ -175,32 +173,25 @@ regButton.addEventListener('click', (e) => {
     const basicInfo = document.querySelector('fieldset legend')
     if(name.value){
         basicInfo.style.color = 'black';
-        console.log('we have a name');
     } else {
         basicInfo.style.color = 'red';
-        console.log('no name');
         
     }
 
     //check if email has a value 
     const email = document.querySelector('#mail')
-    console.log(email.value);
     if(email.value){
-        console.log('email has a value');
         //if it has a value check if the value passes the regex
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         //this will test if the emails value will pass the regex
         if(regex.test(String(email.value).toLowerCase())){
-            console.log('email passes regex')
             basicInfo.style.color = 'black';
         } else {
             //if email has a value but wont pass the regex 
             basicInfo.style.color = 'red';
-            console.log('email didnt pass regex')
         }
     }else{
         //if email has no value
-        console.log('email has no value ');
         basicInfo.style.color = 'red';
     }
 
@@ -208,23 +199,16 @@ regButton.addEventListener('click', (e) => {
     //get a list of the check boxes 
     const activity = document.querySelectorAll('.activities input');
     const activityLabel = document.querySelector('.activities legend');
-    console.log(activity[0]);
     //loop over the boxes to is if any are checked
     for (let i = 0; i < activity.length; i++){
-        console.log(activity[i]);
         //if one or more are checked run \/
         if(activity[i].checked){
-            console.log('something was picked');
-            console.log('color is black');
             activityLabel.style.color = 'black'
            
         }else if (activity[0].checked){
-            console.log('main course was picked');
             activityLabel.style.color = 'black'
         }else{
             //else \/
-            console.log('nothing was picked');
-            console.log('color is red ');
             activityLabel.style.color = 'red'
         }
         
@@ -237,7 +221,6 @@ regButton.addEventListener('click', (e) => {
     const cvvNum = document.querySelector('#cvv');
     let payment = document.querySelector('#payment');
     const paymentInfo = document.querySelector('#payment-section legend')
-    console.log(paymentInfo);
     //card regex
     let cardRegex = /^\d{13,16}$/; 
     let zipRegex = /^\d{6}$/;
@@ -245,10 +228,8 @@ regButton.addEventListener('click', (e) => {
 
     //if the user picks credit card
     if(payment.value === 'credit card'){ 
-        console.log(Number(ccNum.value))
         //test the card number
         if(cardRegex.test(ccNum.value)){
-            console.log('card passed')
             paymentInfo.style.color = 'black'
         }else {
             console.log('need a valid card')
@@ -256,26 +237,20 @@ regButton.addEventListener('click', (e) => {
         }
         //test the zip
         if(zipRegex.test(zipNum.value)){
-            console.log('card passed')
             paymentInfo.style.color = 'black'
         }else {
-            console.log('need a valid zip')
             paymentInfo.style.color = 'red'
         }
         //test the cvv
         if(cvvRegex.test(cvvNum.value)){
-            console.log('card passed')
             paymentInfo.style.color = 'black'
         }else {
-            console.log('need a valid cvv')
             paymentInfo.style.color = 'red'
         }
         //this will act as a extra check to make sure everything is correct
         if (payment.value === 'credit card' && cardRegex.test(ccNum.value) && zipRegex.test(zipNum.value) &&cvvRegex.test(cvvNum.value)){
-            console.log('EVERYTHING IS GOOD')
             paymentInfo.style.color = 'black'
         }else{
-            console.log('missing something')
             paymentInfo.style.color = 'red'
         }
     }
