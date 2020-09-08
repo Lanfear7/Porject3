@@ -29,7 +29,10 @@ const shirtInfo = () => {
     colors.add(option, colors.options[0]);
     //this will select the option element with the index of 0
     color.selectedIndex = 0;
-
+    //this wil set the display of the colors to nothing after the index of 1
+    for(let i = 1; i < colors.length; i++){
+        colors[i].style.display = 'none'
+    }
     //display certain colors
     designs.addEventListener('change', (e) =>{
         //this will make sure if you click option1 then option2 then want to go back to option1 the colors will still display in the form 
@@ -167,7 +170,6 @@ regButton.setAttribute('type', 'button');
 //add an event listener
 regButton.addEventListener('click', (e) => {
     e.preventDefault;
-
     //check if name has a value
     const name = document.querySelector('#name')
     const basicInfo = document.querySelector('fieldset legend')
@@ -277,6 +279,10 @@ regButton.addEventListener('click', (e) => {
             paymentInfo.style.color = 'red'
         }
     }
+    if(basicInfo.style.color = 'black' && activityLabel.style.color == 'black' && paymentInfo.style.color == 'black'){
+       window.location.reload(true); 
+    }
+    
 })
 
 
