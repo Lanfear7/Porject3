@@ -205,11 +205,41 @@ regButton.addEventListener('click', (e) => {
             console.log('color is red ');
             activityLabel.style.color = 'red'
         }
-        
-        
     }
     
-    
+
+    //payment validation 
+    const ccNum = document.querySelector('#cc-num');
+    const zipNum = document.querySelector('#zip');
+    const cvvNum = document.querySelector('#cvv');
+    let payment = document.querySelector('#payment');
+    //card regex
+    let cardRegex = /^\d{13,16}$/; 
+    let zipRegex = /^\d{5}$/;
+    let cvvRegex = /^\d{3}$/;
+
+    //if the user picks credit card
+    if(payment.value === 'credit card'){ 
+        console.log(Number(ccNum.value))
+        //test the card number
+        if(cardRegex.test(ccNum.value)){
+            console.log('card passed')
+        }else {
+            console.log('need a valid card')
+        }
+        //test the zip
+        if(zipRegex.test(zipNum.value)){
+            console.log('card passed')
+        }else {
+            console.log('need a valid zip')
+        }
+        //test the cvv
+        if(cvvRegex.test(cvvNum.value)){
+            console.log('card passed')
+        }else {
+            console.log('need a valid cvv')
+        }
+    }
 })
 
 
