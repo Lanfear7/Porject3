@@ -7,10 +7,11 @@ const setFocus = () => {
 //job role selection 
 const roleSelection = () => {
     const jobRole = document.getElementById('title');
+    let jobInput = document.getElementById('other-title');
+    jobInput.style.display = 'none'
     jobRole.addEventListener('change', (e) => {
-        let jobInput = document.getElementById('other-title');
         if(e.target.value === 'other'){
-            jobInput.style.display = 'inline'
+            jobInput.style.display = 'inline-block'
             jobInput.focus();
         }else{
             jobInput.style.display = 'none'
@@ -166,33 +167,85 @@ const payment = () => {
 const regButton = document.querySelector('button');
 regButton.setAttribute('type', 'button');
 //add an event listener
+const topSection = document.querySelector('fieldset');
+const paySection = document.querySelector('#payment-section');
+console.log(paySection)
+let nameError = document.createElement('h3');
+let mailError = document.createElement('h3');
+let cardError = document.createElement('h3');
+let zipError = document.createElement('h3');
+let cvvError = document.createElement('h3');
+//setting up the error messages these will no be until the user misses some info 
+//mail error
+mailError.className = 'mailError'
+mailError.innerHTML = `Invalid Email`
+topSection.prepend(mailError);
+mailError.style.display = 'none'
+//name error
+nameError.className = 'nameerror'
+nameError.innerHTML = `Invalid Name`
+topSection.prepend(nameError);
+nameError.style.display = 'none'
+//cvv error
+cvvError.className = 'cvvError'
+cvvError.innerHTML = `Invalid CVV`
+paySection.prepend(cvvError);
+cvvError.style.display = 'none'
+//zip error
+zipError.className = 'zipError'
+zipError.innerHTML = `Invalid Zip Code`
+paySection.prepend(zipError);
+zipError.style.display = 'none'
+//card error
+cardError.className = 'cardError'
+cardError.innerHTML = `Invalid Card Number`
+paySection.prepend(cardError);
+cardError.style.display = 'none'
+
+
+
 regButton.addEventListener('click', (e) => {
     e.preventDefault;
     //check if name has a value
-    const name = document.querySelector('#name')
-    const basicInfo = document.querySelector('fieldset legend')
+    const name = document.querySelector('#name');
+    const basicInfo = document.querySelector('fieldset legend');
     if(name.value){
-        basicInfo.style.color = 'black';
+        nameError.style.display = 'none'
     } else {
-        basicInfo.style.color = 'red';
+        basicInfo.style.color = 'red'
+        nameError.style.color = 'red'
+        nameError.style.display = 'inline-block'
         
     }
 
     //check if email has a value 
-    const email = document.querySelector('#mail')
+    const email = document.querySelector('#mail');
     if(email.value){
         //if it has a value check if the value passes the regex
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         //this will test if the emails value will pass the regex
         if(regex.test(String(email.value).toLowerCase())){
-            basicInfo.style.color = 'black';
+            mailError.style.display = 'none'
+
         } else {
             //if email has a value but wont pass the regex 
-            basicInfo.style.color = 'red';
+            basicInfo.style.color = 'red'
+            mailError.style.color = 'red'
+            mailError.style.marginLeft = '30px'
+            mailError.style.display = 'inline-block'
+            console.log('block??')
         }
     }else{
         //if email has no value
-        basicInfo.style.color = 'red';
+        basicInfo.style.color = 'red'
+        mailError.style.color = 'red'
+        mailError.style.marginLeft = '30px'
+        mailError.style.display = 'inline-block'
+        console.log('block??')
+    }
+    //if email ans name are valid then set the 'basicinfo' to #84b7ff
+    if(mailError.style.display != 'inline-block' && nameError.style.display != 'inline-block'){
+        basicInfo.style.color = 'black'
     }
 
     //check any of the check boxes are click 
@@ -231,20 +284,30 @@ regButton.addEventListener('click', (e) => {
         //test the card number
         if(cardRegex.test(ccNum.value)){
             paymentInfo.style.color = 'black'
+            cardError.style.display = 'none'
         }else {
-            console.log('need a valid card')
+            cardError.style.color = 'red'
+            cardError.style.display = 'inline-block'
             paymentInfo.style.color = 'red'
         }
         //test the zip
         if(zipRegex.test(zipNum.value)){
             paymentInfo.style.color = 'black'
+            zipError.style.display = 'none'
         }else {
+            zipError.style.marginLeft = '30px'
+            zipError.style.color = 'red'
+            zipError.style.display = 'inline-block'
             paymentInfo.style.color = 'red'
         }
         //test the cvv
         if(cvvRegex.test(cvvNum.value)){
             paymentInfo.style.color = 'black'
+            cvvError.style.display = 'none'
         }else {
+            cvvError.style.marginLeft = '30px'
+            cvvError.style.color = 'red'
+            cvvError.style.display = 'inline-block'
             paymentInfo.style.color = 'red'
         }
         //this will act as a extra check to make sure everything is correct

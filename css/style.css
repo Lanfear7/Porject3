@@ -107,9 +107,9 @@ input[type="radio"] {
 }
 
 button {
-	color: rgb(132, 183, 255);
+	color: #ff0000;
 	padding: .55em 1.25em;
-	background: #ff0000;
+	background: #84b7ff;
 	margin: 1.25em 0 .5em;
 	cursor: pointer;
 	border: 2px solid black;
@@ -118,8 +118,8 @@ button {
 }
 
 button:hover {
-	background: rgb(111, 157, 220);
-	color: #ff0000;
+	background: #000000;
+	color: #ffffff;
 	
 }
 
@@ -129,7 +129,8 @@ option {
 	font-family: 'roboto', sans-serif;
 }
 .other-title{
-	display: none;
+	display: inline-block;
+	margin-left: 30px;
 }
 /* ================================= 
   Page Styles
