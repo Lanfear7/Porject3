@@ -276,7 +276,7 @@ regButton.addEventListener('click', (e) => {
     const paymentInfo = document.querySelector('#payment-section legend')
     //card regex
     let cardRegex = /^\d{13,16}$/; 
-    let zipRegex = /^\d{6}$/;
+    let zipRegex = /^[a-zA-z0-9]{3} [a-zA-z0-9]{3}$/;
     let cvvRegex = /^\d{3}$/;
 
     //if the user picks credit card

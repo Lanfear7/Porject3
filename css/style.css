@@ -16,8 +16,8 @@ button {
 
 body {
   font: 1em/1.5;
-  color: rgb(111, 157, 220);
-	background: #CDE0FB;
+  color: rgb(134, 211, 72);
+	background: #0a0909;
 }
 
 header {
@@ -26,7 +26,6 @@ header {
 
 h1 {
 	font-size: 2.5em;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
 	margin: 0;
 }
 
@@ -40,8 +39,8 @@ a {
 
 form {
 	padding: .875em 1.875em 1.875em;
-	background: #ffffff;
-	border: 2px solid rgba(8, 63, 87, 0.6);
+	background: #1b1b1b;
+	border: 2px solid rgba(255, 255, 255, 0.6);
 	border-radius: 3px;
 }
 
@@ -64,7 +63,7 @@ button {
 legend {
 	font-weight: bold;
 	padding-top: .5em;
-	border-top: 2px solid rgba(8, 63, 87, 0.6);
+	border-top: 2px solid rgba(255, 255, 255, 0.6);
 	margin-bottom: 1.125em;
 }
 
@@ -75,7 +74,7 @@ legend {
 }
 
 label {
-	color: rgb(1, 153, 255);
+	color: rgb(49, 195, 240);
 	display: block;
 	margin-bottom: .5em;
 }
@@ -90,14 +89,14 @@ input {
 	font-weight: 500;
 	padding: .8em;
 	background: #e9f6fb;
-	border: 2px solid rgb(111, 157, 220);
+	border: 2px solid rgb(49, 195, 240);
 	border-radius: 3px;
 	outline: none;
 }
 
 input:focus {
 	background: #fff;
-	border-color: #5e97b0;
+	border-color: greenyellow;
 	transition: border-color .4s, background-color .4s;
 }
 
@@ -107,19 +106,20 @@ input[type="radio"] {
 }
 
 button {
-	color: #ff0000;
+	color: rgb(255, 255, 255);
 	padding: .55em 1.25em;
-	background: #84b7ff;
+	background: rgb(0, 0, 0);
 	margin: 1.25em 0 .5em;
 	cursor: pointer;
-	border: 2px solid black;
+	border: 2px solid greenyellow;
 	border-radius: 4px;
 	transition: all 0.5s;
 }
 
 button:hover {
-	background: #000000;
-	color: #ffffff;
+	background: greenyellow;
+	color: #000000;
+	border: 2px solid rgb(255, 255, 255);
 	
 }
 
